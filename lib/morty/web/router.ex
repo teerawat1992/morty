@@ -14,6 +14,5 @@ defmodule Morty.Web.Router do
 
     get "/", DonationController, :index
     resources "/donations", DonationController, only: [:index, :create]
-    resources "/charities", CharityController, only: [:index]
   end
 end
