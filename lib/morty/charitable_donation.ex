@@ -1,5 +1,6 @@
 defmodule Morty.CharitableDonation do
-  alias Morty.CharitableDonation.{Charity, Donation}
+  alias Morty.CharitableDonation.Charity
+  alias Morty.CharitableDonation.Donation
   alias Morty.Repo
 
   def list_charities do

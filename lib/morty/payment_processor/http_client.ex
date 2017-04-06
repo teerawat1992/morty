@@ -1,11 +1,9 @@
 defmodule Morty.PaymentProcessor.HTTPClient do
+  alias Omise.Charge
+
   @behaviour Morty.PaymentProcessor
 
   def create_charge(amount_subunit, card) do
-    Omise.Charge.create(
-      amount: amount_subunit,
-      card: card,
-      currency: "thb"
-    )
+    Charge.create(amount: amount_subunit, card: card, currency: "thb")
   end
 end
