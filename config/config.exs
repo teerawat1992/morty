@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :morty,
-  ecto_repos: [Morty.Repo]
+  ecto_repos: [Morty.Repo],
+  payment_processor: Morty.PaymentProcessor.HTTPClient
 
 # Configures the endpoint
 config :morty, Morty.Web.Endpoint,

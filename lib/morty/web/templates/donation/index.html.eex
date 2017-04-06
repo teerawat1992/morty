@@ -1,0 +1,60 @@
+<div class="page-header">
+  <h1 class="title-header">Morty</h1>
+  <h3>Donate to the charity you like</h3>
+</div>
+
+<div id="errors"></div>
+
+<div class="well">
+  <%= form_for @conn, "/donations", [as: :donation, id: :donation], fn f -> %>
+    <input type="hidden" name="card">
+
+    <div class="form-group">
+      <label>I would like to donate to: </label>
+      <%= select f, :charity_id, charities_list(@charities) %>
+      <%= select f, :amount, amounts_list() %>
+    </div>
+
+    <div class="form-group">
+      <%= label f, :name, "Name on card" %>
+      <%= text_input f, :name,
+        class: "form-control",
+        id: "name",
+        placeholder: "Name on card",
+        required: true %>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-8">
+        <%= label f, :number, "Card number" %>
+        <%= text_input f, :number,
+          class: "form-control",
+          id: "number",
+          placeholder: "0000 0000 0000 0000",
+          required: true,
+          minlength: 16,
+          maxlength: 16 %>
+      </div>
+
+      <div class="form-group col-md-4">
+        <%= label f, :cvv, "Code (CVV)" %>
+        <%= text_input f, :cvv,
+          class: "form-control",
+          id: "cvv",
+          minlength: 3,
+          maxlength: 3,
+          required: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Expiration Date: </label>
+      <%= datetime_select f, :expiration, id: "expiration", builder: fn b -> %>
+        <%= b.(:year, [options: year_range()]) %>
+        <%= b.(:month, []) %>
+      <% end %>
+    </div>
+
+    <%= submit "Donate", class: "btn btn-default" %>
+  <% end %>
+</div>

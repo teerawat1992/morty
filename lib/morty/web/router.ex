@@ -9,18 +9,11 @@ defmodule Morty.Web.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", Morty.Web do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", DonationController, :index
+    resources "/donations", DonationController, only: [:index, :create]
+    resources "/charities", CharityController, only: [:index]
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Morty.Web do
-  #   pipe_through :api
-  # end
 end
